@@ -1,6 +1,6 @@
 name: flutter_app_installer
 description: A app installer plugin, supports for installing apk with intent or silently on Android devices.
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/irvine1231/flutter_app_installer
 
 environment:
