@@ -1,3 +1,7 @@
+## 0.0.2
+
+- Update README.md.
+
 ## 0.0.1
 
 - Add versionName, versionCode, isDeviceRooted, isSystemApplication, and hasShellRootPermission properties.

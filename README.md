@@ -44,6 +44,12 @@ Please replace the packageName with your app package's name.
 </paths>
 ```
 
+If your application API level is above 25, please remember to add the permission in `AndroidManifest.xml` file.
+
+```
+<uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+```
+
 **Install silently**
 
 In order to install the APK silently, your app must be a system application or has root permission on your emulator.
