@@ -63,22 +63,22 @@ class FlutterAppInstallerPlugin: FlutterPlugin, MethodCallHandler, ActivityAware
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
     when (call.method) {
-        "getPlatformVersion" -> {
-          result.success("Android ${Build.VERSION.RELEASE}")
-        }
-        "getVersionName" -> {
-          result.success(applicationContext.packageManager.getPackageInfo(applicationContext.packageName, 0).versionName)
-        }
-        "getVersionCode" -> {
-          result.success(if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) applicationContext.packageManager.getPackageInfo(applicationContext.packageName, 0).longVersionCode else applicationContext.packageManager.getPackageInfo(applicationContext.packageName, 0).versionCode)
-        }
-        "isDeviceRooted" -> isDeviceRooted(call, result)
-        "isSystemApplication" -> result.success(isSystemApplication(applicationContext.packageManager, applicationContext.packageName))
-        "checkShellRootPermission" -> result.success(checkRootPermission())
-        "installApk" -> installApk(call, result)
-        else -> {
-          result.notImplemented()
-        }
+      "getPlatformVersion" -> {
+        result.success("Android ${Build.VERSION.RELEASE}")
+      }
+      "getVersionName" -> {
+        result.success(applicationContext.packageManager.getPackageInfo(applicationContext.packageName, 0).versionName)
+      }
+      "getVersionCode" -> {
+        result.success(if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) applicationContext.packageManager.getPackageInfo(applicationContext.packageName, 0).longVersionCode else applicationContext.packageManager.getPackageInfo(applicationContext.packageName, 0).versionCode)
+      }
+      "isDeviceRooted" -> isDeviceRooted(call, result)
+      "isSystemApplication" -> result.success(isSystemApplication(applicationContext.packageManager, applicationContext.packageName))
+      "checkShellRootPermission" -> result.success(checkRootPermission())
+      "installApk" -> installApk(call, result)
+      else -> {
+        result.notImplemented()
+      }
     }
   }
 

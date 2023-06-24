@@ -1,22 +1,25 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'dart:async';
-
 import 'package:flutter/services.dart';
 import 'package:flutter_app_installer/flutter_app_installer.dart';
 import 'package:path_provider/path_provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
   @override
-  _MyAppState createState() => _MyAppState();
+  createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
+  final FlutterAppInstaller flutterAppInstaller = FlutterAppInstaller();
+
   String _platformVersion = 'Unknown';
   String _versionName = 'Unknown';
   int _versionCode = 0;
@@ -41,7 +44,7 @@ class _MyAppState extends State<MyApp> {
     // Platform messages may fail, so we use a try/catch PlatformException.
     // We also handle the message potentially returning null.
     try {
-      platformVersion = await FlutterAppInstaller.platformVersion ?? 'Unknown platform version';
+      platformVersion = await flutterAppInstaller.platformVersion ?? 'Unknown platform version';
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
@@ -57,8 +60,8 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> initVersion() async {
-    String? versionName = await FlutterAppInstaller.versionName;
-    int? versionCode = await FlutterAppInstaller.versionCode;
+    String? versionName = await flutterAppInstaller.versionName;
+    int? versionCode = await flutterAppInstaller.versionCode;
 
     setState(() {
       _versionName = versionName ?? "Unknown Version Name";
@@ -67,33 +70,33 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> initIsDeviceRooted() async {
-    bool isDeviceRooted = await FlutterAppInstaller.isDeviceRooted;
+    bool isDeviceRooted = await flutterAppInstaller.isDeviceRooted;
     setState(() {
       _isDeviceRooted = isDeviceRooted;
     });
   }
 
   Future<void> initIsSystemApplication() async {
-    bool isSystemApplication = await FlutterAppInstaller.isSystemApplication;
+    bool isSystemApplication = await flutterAppInstaller.isSystemApplication;
     setState(() {
       _isSystemApplication = isSystemApplication;
     });
   }
 
   Future<void> initHasShellRootPermission() async {
-    bool hasShellRootPermission = await FlutterAppInstaller.hasShellRootPermission;
+    bool hasShellRootPermission = await flutterAppInstaller.hasShellRootPermission;
     setState(() {
       _hasShellRootPermission = hasShellRootPermission;
     });
   }
 
   Future<void> initTestApkFile() async {
-    final filename = 'test-install.apk';
+    const filename = 'test-install.apk';
     var bytes = await rootBundle.load("assets/$filename");
     String path = "${(await getExternalStorageDirectory())!.uri.toFilePath()}$filename";
 
     final buffer = bytes.buffer;
-    _testInstallApk = await new File(path).writeAsBytes(
+    _testInstallApk = await File(path).writeAsBytes(
       buffer.asUint8List(
         bytes.offsetInBytes,
         bytes.lengthInBytes,
@@ -102,13 +105,13 @@ class _MyAppState extends State<MyApp> {
   }
 
   void startInstallTestApkNormal() {
-    FlutterAppInstaller.installApk(
+    flutterAppInstaller.installApk(
       filePath: _testInstallApk.path,
     );
   }
 
   void startInstallTestApkSilently() {
-    FlutterAppInstaller.installApk(
+    flutterAppInstaller.installApk(
       filePath: _testInstallApk.path,
       silently: true,
     );
@@ -133,11 +136,11 @@ class _MyAppState extends State<MyApp> {
               Text("Application has shell root permission: $_hasShellRootPermission"),
               OutlinedButton(
                 onPressed: startInstallTestApkNormal,
-                child: Text("Install Test Apk Normal"),
+                child: const Text("Install Test Apk Normal"),
               ),
               OutlinedButton(
                 onPressed: startInstallTestApkSilently,
-                child: Text("Install Test Apk Silently"),
+                child: const Text("Install Test Apk Silently"),
               )
             ],
           ),

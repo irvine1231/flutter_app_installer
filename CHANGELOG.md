@@ -1,13 +1,4 @@
-## 0.0.3
+## 1.0.0
 
-- Update README.md.
-
-## 0.0.2
-
-- Update README.md.
-
-## 0.0.1
-
-- Add versionName, versionCode, isDeviceRooted, isSystemApplication, and hasShellRootPermission properties.
-- Implements install apk with Android Intent.
-- Implements install apk silently.
+- Change flutter function call from static to non-static.
+- Upgrade flutter, kotlin, and gradle version.

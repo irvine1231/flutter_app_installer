@@ -10,7 +10,7 @@ Add this to your package's pubspec.yaml file:
 
 ```yaml
 dependencies:
-  flutter_app_installer: ^0.0.3
+  flutter_app_installer: ^1.0.0
 ```
 
 ### Android
@@ -73,7 +73,8 @@ import 'package:flutter_app_installer/flutter_app_installer.dart';
 Install your apk with Android Intent.
 
 ```dart
-FlutterAppInstaller.installApk(
+final FlutterAppInstaller flutterAppInstaller = FlutterAppInstaller();
+flutterAppInstaller.installApk(
   filePath: apk_file_full_path_here,
 );
 ```
@@ -81,8 +82,15 @@ FlutterAppInstaller.installApk(
 Install your apk silently.
 
 ```dart
-FlutterAppInstaller.installApk(
+final FlutterAppInstaller flutterAppInstaller = FlutterAppInstaller();
+flutterAppInstaller.installApk(
   filePath: apk_file_full_path_here,
   silently: true,
 );
 ```
+
+## Upgrade from v0 to v1
+
+The installApk function call is changed from static method to non-static method.
+
+Please remember to change the installApk function call in your application.
