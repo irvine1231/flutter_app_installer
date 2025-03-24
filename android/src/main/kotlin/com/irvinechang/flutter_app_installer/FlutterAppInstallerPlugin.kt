@@ -281,7 +281,7 @@ class FlutterAppInstallerPlugin: FlutterPlugin, MethodCallHandler, ActivityAware
     )
 
     return (commandResult.successMsg != null
-            && commandResult.successMsg!!.toLowerCase(Locale.ROOT).contains("success"))
+            && commandResult.successMsg!!.lowercase().contains("success"))
   }
 
   /**
@@ -300,7 +300,7 @@ class FlutterAppInstallerPlugin: FlutterPlugin, MethodCallHandler, ActivityAware
     val command = "pm install -i $packageName $filePath"
     val commandResult: CommandResult = execCommand(command, isRoot = true, isNeedResultMsg = false)
     return (commandResult.successMsg != null
-            && commandResult.successMsg!!.toLowerCase(Locale.ROOT).contains("success"))
+            && commandResult.successMsg!!.lowercase().contains("success"))
   }
 
   /**
