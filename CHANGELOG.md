@@ -1,4 +1,3 @@
-## 1.0.0
+## 1.0.1
 
-- Change flutter function call from static to non-static.
-- Upgrade flutter, kotlin, and gradle version.
+- Minor fix to Kotlin lowercase error when compiling Flutter app

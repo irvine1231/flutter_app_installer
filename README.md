@@ -10,7 +10,7 @@ Add this to your package's pubspec.yaml file:
 
 ```yaml
 dependencies:
-  flutter_app_installer: ^1.0.0
+  flutter_app_installer: ^1.0.1
 ```
 
 ### Android
